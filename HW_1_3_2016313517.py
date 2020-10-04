@@ -107,17 +107,21 @@ class Empty(Exception):
 def is_palindrome():
     D = ArrayDequeue()
     user_input = input("Please input words:")
+    
     for i in user_input:
         D.add_last(i)
+    
     D.show()
+    
     reversed_input = ""
+
     for i in range(len(D)):
         reversed_input += D.delete_last()
     
     if user_input == reversed_input:
-        print("{} is palindrome".format(user_input))
+        print("{} is palindrome.".format(user_input))
     else:
-        print("{} is not palindrome".format(user_input))
+        print("{} is not palindrome.".format(user_input))
 
 if __name__ == "__main__":
     while(True):
