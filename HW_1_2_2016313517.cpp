@@ -6,17 +6,16 @@
  *      Sungkyunkwan University.
  *
  *    File name: HW_1_2_2016313517.cpp
- *    Program date: 2020.10.03.
+ *    Program date: 2020.10.05.
  *
  *    Written on Oct 3, 2020
- *    Modified on Oct 3, 2020
+ *    Modified on Oct 5, 2020
  *    Modification History:
  *          1. Written by Han Kyul Kwon
  *              (a) Add ArrayStack class.
  *          2. Modified by Han Kyul Kwon on Oct 5, 2020
- *              (a) Add codes for normal execution. (on parctice hours)
- *          3. Modified by Han Kyul Kwon on June 21, 2017
- *              (a) Add comments for explanation.
+ *              (a) Add codes for normal execution.
+ *              (b) Add comments for explanation.
  *
  *    Language used: C++ 11
  *    Compiler used: G++ 5.4.0
