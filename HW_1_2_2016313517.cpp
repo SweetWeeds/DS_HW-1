@@ -1,7 +1,7 @@
 /*
- *    Programming Lab. : Dynamic Array
+ *    Project : HW1-2 Stack
  *
- *    Written by Kwon, Han Kyul,
+ *    Written by Kwon, Han Kyul (2016313517),
  *      School of Electrical and Electronics Engineering
  *      Sungkyunkwan University.
  *
@@ -12,7 +12,8 @@
  *    Modified on Oct 3, 2020
  *    Modification History:
  *          1. Written by Han Kyul Kwon
- *          2. Modified by Han Kyul Kwon on June 8, 2017
+ *              (a) Add ArrayStack class.
+ *          2. Modified by Han Kyul Kwon on Oct 5, 2020
  *              (a) Add codes for normal execution. (on parctice hours)
  *          3. Modified by Han Kyul Kwon on June 21, 2017
  *              (a) Add comments for explanation.
@@ -21,47 +22,63 @@
  *    Compiler used: G++ 5.4.0
  */
 
-#define MAX_STACK_SIZE 1000
+#define MAX_STACK_SIZE 1000     // Maximum stack size
 
 #include <iostream>
 
 using namespace std;
 
+/**
+ * LIFO Stack implementation using a Python list as underlying storage.
+ */
 template <typename T>
 class ArrayStack {
-//LIFO Stack implementation using a Python list as underlying storage.//
 private:
     T *data;
     int size = 0;    // size of stack
 public:
+    /** 
+     * Constructor 
+     * Create an empty stack.
+     */
     ArrayStack() {
-        //Create an empty stack.//
         this->data = new T[MAX_STACK_SIZE]; // nonpublic list instance
     }
 
+    /**
+     * Destructor
+     */
     ~ArrayStack() {
         delete[] data;
     }
 
+    /** 
+     * Return the number of elements in the stack.
+     */
     int len() {
-        //Return the number of elements in the stack.//
         return this->size;
     }
 
+    /**
+     * Return True if the stack is empty.
+     */
     bool is_empty() {
-        //Return True if the stack is empty.//
         return this->len() == 0;
     }
 
+    /**
+     * Add element e to the top of the stack.
+     */
     void push(T e) {
-        //Add element e to the top of the stack.//
         this->data[this->size++] = e; // new item stored at end of list
     }
-
+    
+    /**
+     * Return (but do not remove) the element at the top of the stack.
+     * Raise Empty exception if the stack is empty.
+     */
     T top() {
-        /* Return (but do not remove) the element at the top of the stack.
-         *Raise Empty exception if the stack is empty.
-         */
+
         if (this->is_empty()) {
             cout << "[ERROR] Stack is empty" << endl;
             return NULL;
@@ -69,10 +86,11 @@ public:
         return this->data[size - 1]; // the last item in the list
     }
 
+    /**
+     * Remove and return the element from the top of the stack (i.e., LIFO).
+     * Raise Empty exception if the stack is empty.
+     */
     T pop() {
-        /* Remove and return the element from the top of the stack (i.e., LIFO).
-         * Raise Empty exception if the stack is empty.
-         */
         if (this->is_empty()) {
             cout << "[ERROR] Stack is empty" << endl;
             return NULL;
@@ -81,13 +99,16 @@ public:
     }
 };
 
-// Verify that the text entered by the user is palindrome. //
-void is_palindrome() {
-    ArrayStack<char> arr_stk;
-    string user_input; 
 
-    cout << "Check palindrome: ";
-    getline(cin, user_input);
+/**
+ * Verify that the text entered by the user is palindrome. 
+ * Input:
+ *  string user_input: 
+ * Output:
+ *  Return true if user input text is 
+ **/
+bool is_palindrome(string user_input) {
+    ArrayStack<char> arr_stk;
     int input_len = user_input.length();
     
     for (int i = 0 ; i < input_len ; i++) {
@@ -99,19 +120,38 @@ void is_palindrome() {
     while (!arr_stk.is_empty()) {
         reversed_input += arr_stk.pop();
     }
-    
-    cout << user_input << ':' << reversed_input << endl;
 
     if (user_input == reversed_input) {
-        cout << user_input << " is palindrome." << endl;
+        return true;
     } else {
-        cout << user_input << " is not palindrome." << endl;
+        return false;
     }
 }
 
+
+/**
+ * Main function of the program
+ *  Get the user input and prints out whether the entered text is palindrome.
+ */
 int main(void) {
-    while(1) {
-        is_palindrome();
+    cout << "*********************************************" << endl;
+    cout << "****         Data Structure HW1-2        ****" << endl;
+    cout << "****     Name: Kwon Han Kyul             ****" << endl;
+    cout << "****     Student ID: 2016313517          ****" << endl;
+    cout << "*********************************************" << endl << endl;
+
+    string user_input;
+
+    while (true) {
+        cout << "Please input words: ";
+        getline(cin, user_input);
+
+        if (is_palindrome(user_input)) {
+            cout << user_input << " is palindrome." << endl;
+        } else {
+            cout << user_input << " is not palindrome." << endl;
+        }
+        cout << "---------------------------------------------" << endl;
     }
     return 0;
 }
